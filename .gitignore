@@ -1,0 +1,39 @@
+# Archivos binarios generales
+*.exe
+*.dll
+*.so
+*.dylib
+*.o
+*.obj
+*.a
+*.lib
+
+# Archivos de compilación en C/C++
+*.out
+*.elf
+
+# Archivos de Python compilados
+*.pyc
+*.pyo
+__pycache__/
+
+# Archivos de Java compilados
+*.class
+*.jar
+*.war
+
+# Archivos de Go compilados
+*.exe
+*.test
+*.mod
+
+# Archivos de Node.js compilados
+node_modules/
+dist/
+build/
+
+# Archivos de Rust compilados
+target/
+
+# Archivos innecesarios de PDF
+*:Zone.Identifier
