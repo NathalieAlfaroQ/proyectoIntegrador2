@@ -24,13 +24,7 @@
 
 int main(int argc, char *argv[])
 {
-   // Dirección IPv6 privada del servidor con la interfaz eth0.
-  // const char *lab = "fe80::215:5dff:fe01:a7ed%eth0";
-
-   //const char * lab = "fe80::8f5a:e2e1:7256:ffe3%enp0s31f6";
-      //const char * lab = "fe80::8f5a:e2e1:7256:ffe3%eth0";
    const char * lab = "fe80::8f5a:e2e1:7256:ffe3%enp0s31f6";
-
 
    /*
     * Petición HTTP que se enviará al servidor.
@@ -41,15 +35,14 @@ int main(int argc, char *argv[])
     */
    const char *request = (char *) "GET /aArt/index.php?disk=Disk-01&fig=whale-1.txt\r\nHTTP/v1.1\r\nhost: redes.ecci\r\n\r\n";
 
-
    // Crea un socket TCP llamado "s" en IPv6 que se especifica con true.
    Socket s('s', true);
 
-   // Buffer de 512 bytes, almacena la respuesta del servidor.
-   char a[512];
+   // Buffer de 2048 bytes, almacena la respuesta del servidor.
+   char a[2048];
 
    // Llena el buffer con 0.
-   memset(a, 0, 512);
+   memset(a, 0, 2048);
 
    // Para conectarse al servidor IPv6 en el puerto 8080.
    s.MakeConnection(lab, (char *)"http");
@@ -57,7 +50,7 @@ int main(int argc, char *argv[])
    // Envía la petición HTTP al servidor.
    s.Write(request);
 
-   // Lee hasta 512 bytes desde el socket y los almacena en "a".
-   s.Read(a, 512);
+   // Lee hasta 2048 bytes desde el socket y los almacena en "a".
+   s.Read(a, 2048);
    printf("%s\n", a);
 } // Fin main

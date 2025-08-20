@@ -1,3 +1,9 @@
+## Como compilar y ejecutar
+* La evidencia que funcia esta en la imagen adjunta en la carpeta.
+Primero abrir una terminal y correr el server de python con python3 server.py
+Luego en otra terminal hacer make clean, make, make ipv6-test.out y luego ejecutar con ./ipv6-test.out
+
+
 Objetivo
    Completar las clase "VSocket" y "Socket" en C++ para lograr el intercambio de mensajes entre computadoras que no comparten memoria utilizando el protocolo TCP en IPv6
 
@@ -64,3 +70,7 @@ Descripción detallada:
 
 Referencias
    https://os.ecci.ucr.ac.cr/ci0123/Asignaciones/SocketsCourse.ppt
+
+## Evidencia que funciona
+
+![Despliega ballena asesina](etiqueta.png)
