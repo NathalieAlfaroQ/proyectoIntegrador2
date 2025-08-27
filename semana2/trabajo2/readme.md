@@ -1,4 +1,5 @@
 ## Objetivo
+
 Completar las clases "VSocket" y "Socket" para lograr el intercambio de mensajes utilizando el protocolo UDP en IPv4,
 para lograr la transferencia de datagramas.
 
@@ -9,6 +10,7 @@ y nos devolverá una tira, y un cliente quién se encargará de enviar el primer
 
 
 ## Procedimiento
+
 1) Funcionamiento UDP
    - Completar la clase "VSocket" para poder intercambiar mensajes UDP.
 
@@ -33,6 +35,7 @@ y nos devolverá una tira, y un cliente quién se encargará de enviar el primer
 
 
 ## Referencias
+
 Acceso al manual de Unix: "man sendto" o "man recvfrom".
 
 https://os.ecci.ucr.ac.cr/ci0123/Asignaciones/SocketsCourse.ppt
@@ -54,6 +57,7 @@ En la terminal 2:
    - Compilar el proyecto con: `make`
    - Compilar el servidor: `make ipv4-udp-client.out`
    - Ejecutar el servidor: `./ipv4-udp-client.out`
+
 
 ## Evidencia de funcionamiento
 
