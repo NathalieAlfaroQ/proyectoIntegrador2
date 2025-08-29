@@ -196,8 +196,8 @@ int SSLSocket::MakeConnection(const char *host, const char *service)
 {
     int st;
     SSL *ssl = reinterpret_cast<SSL *>(this->SSLStruct);
-
-    st = this->MakeConnection(host, service);
+    //printf("hola\n");
+    st = this->EstablishConnection(host, service);
     st = SSL_set_fd(ssl, this->idSocket);
     if (st == -1)
     {
@@ -254,7 +254,7 @@ size_t SSLSocket::Read(void *buffer, size_t size)
 size_t SSLSocket::Write(const char *string)
 {
     int st = -1;
-    st = Write((void *)string, strlen(string));
+    st = Write(string, strlen(string));
 
     if (-1 == st)
     {
@@ -280,7 +280,7 @@ size_t SSLSocket::Write(const void *buffer, size_t size)
 {
     int st = -1;
     SSL *ssl = reinterpret_cast<SSL *>(this->SSLStruct);
-    st = SSL_read(ssl, (void *)buffer, size);
+    st = SSL_write(ssl, (void *)buffer, size);
 
     if (-1 == st)
     {

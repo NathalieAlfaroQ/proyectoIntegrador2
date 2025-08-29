@@ -9,12 +9,13 @@
   *  Puede obtener las direcciones de sus tarjetas de red con el comando "ip addr"
   *
   *  Uso:
-  *
-  *    ./tcp-cli.out ipVer[4|6] SSL[0|1]
-  *    ./tcp-cli.out 6 1
+  *      Compilar con make
+  *      Ejecutar con ./tcp-cli.out 6 1
+  *      IPv4 o IPv6 con SSL 1 sin SSL 0 //Para cambiar esto, hay que cambiar linea 32 y 33
+  *      IPv6 solo funciona en el lab3-5
  **/
  
- #include <stdio.h>
+#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
@@ -26,17 +27,20 @@ int main( int argc, char * argv[] ) {
    const char * whalev6 = "fe80::8f5a:e2e1:7256:ffe3%enp0s31f6";
    const char * whalev4 = "10.1.35.1";
    const char * request = "GET /aArt/index.php?disk=Disk-01&fig=whale-1.txt HTTP/1.1\r\nhost: redes.ecci\r\n\r\n";
+
    VSocket * client;
-   char a[512];
+   char a[2048];
    int ipVer = 6;	// 4 = IPv4, 6 = IPv6
    int ssl = 1;		// 0 = non SSL, 1 = SSL
 
-   memset( a, 0, 512 );	// Only first data part, must iterate to complete requested figure
+   memset( a, 0, 2048 );	// Only first data part, must iterate to complete requested figure
 
    if ( argc > 2 ) {
       ipVer = atoi( argv[ 1 ] );
       ssl = atoi( argv[ 2 ] );
+
    } else {
+
       if ( argc > 1 ) {
          ipVer = atoi( argv[ 1 ] );
       }
@@ -45,12 +49,14 @@ int main( int argc, char * argv[] ) {
    if ( ipVer != 6 ) {
       ipVer = 4;
    }
+
    if ( ssl != 1 ) {
       ssl = 0;
    }
 
    if ( ssl ) {
       printf( "Connecting SSL" );
+
       if ( 4 == ipVer ) {
          client = new SSLSocket();			// Create an IPv4 TCP SSL socket
          client->MakeConnection( "os.ecci.ucr.ac.cr", "https" );
@@ -60,8 +66,10 @@ int main( int argc, char * argv[] ) {
          client->MakeConnection( whalev6, "https" );
          printf( " IPv6\n" );
       }
+
    } else {							// Non SSL socket
       printf( "Connecting non-SSL" );
+
       if ( 4 == ipVer ) {
          client = new Socket( 's' );		// Create an IPv4 TCP socket
          client->MakeConnection( whalev4, 80 );
@@ -74,7 +82,6 @@ int main( int argc, char * argv[] ) {
    }
 
    client->Write(  request );
-   client->Read( a, 511 );
+   client->Read( a, 2048 );
    printf( "%s\n", a);
-
 }
