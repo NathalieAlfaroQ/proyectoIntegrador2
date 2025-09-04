@@ -26,14 +26,15 @@
 int main( int argc, char * argv[] ) {
    const char * whalev6 = "fe80::8f5a:e2e1:7256:ffe3%enp0s31f6";
    const char * whalev4 = "10.1.35.1";
-   const char * request = "GET /aArt/index.php?disk=Disk-01&fig=whale-1.txt HTTP/1.1\r\nhost: redes.ecci\r\n\r\n";
+   const char * request = "GET /aArt/index.php?disk=Disk-01&fig=whale-1.txt HTTP/1.1\r\nhost: os.ecci.ucr.ac.cr\r\n\r\n";
+   
 
    VSocket * client;
-   char a[2048];
+   char a[1024];
    int ipVer = 4;	// 4 = IPv4, 6 = IPv6
    int ssl = 1;		// 0 = non SSL, 1 = SSL
 
-   memset( a, 0, 2048 );	// Only first data part, must iterate to complete requested figure
+   memset( a, 0, 1024 );	// Only first data part, must iterate to complete requested figure
 
    if ( argc > 2 ) {
       ipVer = atoi( argv[ 1 ] );
@@ -81,7 +82,51 @@ int main( int argc, char * argv[] ) {
       }
    }
 
-   client->Write(  request );
-   client->Read( a, 2048 );
-   printf( "%s\n", a);
+  // client->Write(  request );
+   //client->Read( a, 1024 ); // hacer ciclo
+  // while (client->Read( a, 1024 ) > 0) {
+  // printf( "%s\n", a);
+   //  }
+/*    char *start = strstr(a, "<PRE>");
+   char *end = strstr(a, "</PRE>");
+
+   if (start && end) {
+      start += 5;
+      *end = '\0'; 
+      while (client->Read( a, 1024 ) > 0) {
+         printf("%s\n", start);
+      }
+   }*/
+
+      client->Write(request);
+
+   // Buffer grande para acumular toda la respuesta
+   char buffer[8192];
+   memset(buffer, 0, sizeof(buffer));
+
+   int total = 0;
+   int n;
+
+   // Leer todo en el buffer
+   while ((n = client->Read(a, 1024)) > 0) {
+      if (total + n < sizeof(buffer)) {
+         memcpy(buffer + total, a, n);
+         total += n;
+      }
+      memset(a, 0, sizeof(a));
+   }
+
+   // Buscar las etiquetas <PRE> y </PRE>
+   char *start = strstr(buffer, "<PRE>");
+   char *end   = strstr(buffer, "</PRE>");
+
+   if (start && end) {
+      start += 5;  // Saltar "<PRE>"
+      *end = '\0'; // Cortar en "</PRE>"
+
+      printf("%s\n", start); // Imprimir solo la ballena
+   } else {
+      printf("No se encontró el bloque <PRE> ... </PRE>\n");
+   }
+
 }
