@@ -26,7 +26,7 @@
 int main( int argc, char * argv[] ) {
    const char * whalev6 = "fe80::8f5a:e2e1:7256:ffe3%enp0s31f6";
    const char * whalev4 = "10.1.35.1";
-   const char * request = "GET /aArt/index.php?disk=Disk-01&fig=whale-1.txt HTTP/1.1\r\nhost: os.ecci.ucr.ac.cr\r\n\r\n";
+   const char * request = "GET /aArt/index.php?disk=Disk-01&fig=rabbit.txt HTTP/1.1\r\nhost: os.ecci.ucr.ac.cr\r\n\r\n";
    
 
    VSocket * client;
@@ -126,7 +126,7 @@ int main( int argc, char * argv[] ) {
 
       printf("%s\n", start); // Imprimir solo la ballena
    } else {
-      printf("No se encontró el bloque <PRE> ... </PRE>\n");
+     // printf("No se encontró el bloque <PRE> ... </PRE>\n");
+      printf("%s\n", buffer);
    }
-
 }
