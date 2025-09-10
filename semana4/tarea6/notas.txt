@@ -1,0 +1,3 @@
+En el trabajo 6 hay un readme con los otros compañeros con los que se trabajó-
+También está la versión actual del modelo de almacenamiento a trabajar.
+A la simulación no se le hacen cambios por el momento con respecto a la nueva integración del protocolo de otro equipo ya que se opta por seguir trabajando sencillo y no agregar las etiquetas de ellos, sino centrarse funcionamiento de conexión.
