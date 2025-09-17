@@ -1,0 +1,6 @@
+El Packet Tracer da 100% de tareas cumplidas, pero para que salga ese 100%
+hay que poner la IP inicial de PC1 que es la incorrecta, por lo cual si se hace
+ping de PC1 a PC2 saldrá que hay pérdida de paquetes, si queremos que haya 0%
+pérdida de paquetes entre PC1 y PC2 pues hay que cambiar la IP de PC1
+por la correcta que en vez de 10 es 20 y así el ping será exitoso, pero
+el Packet Tracer en general daría que solo un 98% de las tareas fueron cumplidas.
