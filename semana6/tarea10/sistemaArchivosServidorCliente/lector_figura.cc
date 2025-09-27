@@ -14,6 +14,32 @@ Bloques de 256 bytes, primer bloque es directorio
 const int TAM_BLOQUE = 256;
 const std::string ARCHIVO = "almacenamiento.bin";
 
+std::vector<std::string> listar_figuras()
+{
+    std::vector<std::string> figuras;
+    std::ifstream archivo(ARCHIVO, std::ios::binary);
+    if (!archivo) {
+        // devolver vector vacío (o podrías devolver un mensaje de error)
+        return figuras;
+    }
+
+    std::vector<char> directorio(TAM_BLOQUE);
+    archivo.read(directorio.data(), TAM_BLOQUE);
+
+    uint8_t contador = static_cast<uint8_t>(directorio[TAM_BLOQUE - 1]);
+
+    for (int i = 0; i < contador; ++i) {
+        int offset = 2 + i * 16;
+        char nombre_raw[15] = {0};
+        std::memcpy(nombre_raw, &directorio[offset], 14);
+        std::string nombre(nombre_raw);
+        nombre.erase(nombre.find_last_not_of("\0 ") + 1);
+        if (!nombre.empty()) figuras.push_back(nombre);
+    }
+
+    return figuras;
+}
+
 // Leer figura del filesystem
 std::string leer_figura(const std::string &nombre_figura)
 {
