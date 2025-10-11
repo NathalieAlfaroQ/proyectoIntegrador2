@@ -1,0 +1,12 @@
+Para el trabajo 15 hay que responder unas preguntas y entregarlas a papel en la clase, olvidé tomarle foto y subirla, pero no era requisito.
+
+Entregar un documento al final de la clase (hoja de papel a los profesores) con:
+Los elementos que considere importantes para establecer una servicio cache
+Los elementos de la memoria cache que están fijos en el enunciado
+Un esquema con la interacción de los elementos involucrados
+Detalle de las redes de interconexión de servidores
+La interacción que pretende establecer entre el servidor de figuras y el servicio de cache
+La interacción que pretende establecer entre el intermediario y el servicio de cache
+Análisis de casos:
+¿Qué hacer si la figura no cabe en la memoria caché?
+¿Debe el protocolo grupal tomar en cuenta esta nueva memoria caché?
