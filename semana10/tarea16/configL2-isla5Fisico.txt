@@ -34,8 +34,6 @@ ip dhcp pool VLAN650
 !         
 !         
 !         
-spanning-tree mode pvst
-spanning-tree extend system-id
 !         
 vlan internal allocation policy ascending
 !         
@@ -44,22 +42,18 @@ vlan internal allocation policy ascending
 interface FastEthernet0/1
  switchport access vlan 650
  switchport mode access
- spanning-tree portfast
 !         
 interface FastEthernet0/2
  switchport access vlan 650
  switchport mode access
- spanning-tree portfast
 !         
 interface FastEthernet0/3
  switchport access vlan 650
  switchport mode access
- spanning-tree portfast
 !         
 interface FastEthernet0/4
  switchport access vlan 650
  switchport mode access
- spanning-tree portfast
 !         
 interface FastEthernet0/5
 !         
@@ -105,7 +99,6 @@ interface GigabitEthernet0/1
  switchport access vlan 650
  switchport trunk allowed vlan 650
  switchport mode access
- spanning-tree portfast
 !         
 interface GigabitEthernet0/2
 !         
