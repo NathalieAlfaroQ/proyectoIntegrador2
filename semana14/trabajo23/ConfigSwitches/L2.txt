@@ -1,0 +1,142 @@
+Current configuration : 3316 bytes
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname L2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+!
+no aaa new-model
+system mtu routing 1500
+ip dhcp excluded-address 172.16.123.81 172.16.123.82
+!
+ip dhcp pool vlan650
+   network 172.16.123.80 255.255.255.240
+   default-router 172.16.123.81 
+!         
+!         
+!         
+!         
+crypto pki trustpoint TP-self-signed-2300418432
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2300418432
+ revocation-check none
+ rsakeypair TP-self-signed-2300418432
+!         
+!         
+crypto pki certificate chain TP-self-signed-2300418432
+ certificate self-signed 01
+  3082023F 308201A8 A0030201 02020101 300D0609 2A864886 F70D0101 04050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 32333030 34313834 3332301E 170D3933 30333031 30303032 
+  30315A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D32 33303034 
+  31383433 3230819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 
+  81009960 BB15DEAB 459B24DF F7DFBF39 1880BAF0 5A7B3E21 BEF0F811 D9B7D6A4 
+  8439F363 643F0426 F6AEFBAC B24B05AC B9617F14 0D7DD739 34B394BE 97515F4D 
+  D8D8256F DD07E467 49BC9327 BE4367F4 B655601B BE802218 6FE10829 24C7FDAC 
+  8C363DB5 9BFDF5F3 68C4B1D0 53CF5C73 8391CB63 848AAE73 EDA9293C 4688AB33 
+  1C0D0203 010001A3 67306530 0F060355 1D130101 FF040530 030101FF 30120603 
+  551D1104 0B300982 07537769 7463682E 301F0603 551D2304 18301680 142C88A8 
+  D972EE8E 1152D71B 7763A8CB 1151D36F 35301D06 03551D0E 04160414 2C88A8D9 
+  72EE8E11 52D71B77 63A8CB11 51D36F35 300D0609 2A864886 F70D0101 04050003 
+  81810099 20FDFD64 5F5FF192 AF4ADCF0 7A8CA099 5A4279A6 FD62ADD6 3D2E1218 
+  B8C8B2A7 4A8898CF D958069C 1A3C382A 2F20EE8C BD480BBA ACE4795A CF50596C 
+  E78564A4 2ADDE8F7 396FA7DF E37BD963 424E41F0 C7BB0D23 E081F90F CEC9F027 
+  8E5DB4F2 F528555E 356BC72B B3F8F296 7739C715 C562B9E4 26353AF4 4127F9D7 75FFEC
+  quit    
+!         
+!         
+!         
+spanning-tree mode pvst
+spanning-tree extend system-id
+!         
+vlan internal allocation policy ascending
+!         
+!         
+!         
+interface FastEthernet0/1
+ switchport access vlan 650
+ switchport mode access
+!         
+interface FastEthernet0/2
+ switchport access vlan 650
+ switchport mode access
+!         
+interface FastEthernet0/3
+ switchport access vlan 650
+ switchport mode access
+!         
+interface FastEthernet0/4
+ switchport access vlan 650
+ switchport mode access
+!         
+interface FastEthernet0/5
+!         
+interface FastEthernet0/6
+!         
+interface FastEthernet0/7
+!         
+interface FastEthernet0/8
+!         
+interface FastEthernet0/9
+!         
+interface FastEthernet0/10
+!         
+interface FastEthernet0/11
+!         
+interface FastEthernet0/12
+!         
+interface FastEthernet0/13
+!         
+interface FastEthernet0/14
+!         
+interface FastEthernet0/15
+!         
+interface FastEthernet0/16
+!         
+interface FastEthernet0/17
+!         
+interface FastEthernet0/18
+!         
+interface FastEthernet0/19
+!         
+interface FastEthernet0/20
+!         
+interface FastEthernet0/21
+!         
+interface FastEthernet0/22
+!         
+interface FastEthernet0/23
+!         
+interface FastEthernet0/24
+!         
+interface GigabitEthernet0/1
+ switchport mode trunk
+!         
+interface GigabitEthernet0/2
+!         
+interface Vlan1
+ no ip address
+!         
+interface Vlan650
+ ip address 172.16.123.82 255.255.255.240
+!         
+ip http server
+ip http secure-server
+!         
+line con 0
+line vty 0 4
+ login    
+line vty 5 15
+ login    
+!         
+end
